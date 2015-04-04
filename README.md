@@ -7,7 +7,7 @@ A note about organization:
 + **PastryTestTests** - Unit tests for PastryKit. There are only a few.
 
 Example of use, get all Pastries by Baker Mike Monteiro:
-
+```swift
   private func showPastryBaker() {
       var pastryKit = PastryKit();
       pastryKit.thoughtsByBaker("mike-monteiro", completionHandler:{(pasteries, error) in
@@ -15,5 +15,6 @@ Example of use, get all Pastries by Baker Mike Monteiro:
           if (nil != pasteries) { println(pasteries) }
       });
   }
+```
 
 Rob Fahrni - April 4, 2015 - Visalia, CA

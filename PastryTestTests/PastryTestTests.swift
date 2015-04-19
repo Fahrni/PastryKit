@@ -12,7 +12,6 @@ import XCTest
 class PastryTestTests: XCTestCase {
     var done: Bool = false;
 
-    
     override func setUp() {
         super.setUp()
         self.done = false;
@@ -32,7 +31,7 @@ class PastryTestTests: XCTestCase {
             XCTAssert(pastries != nil, "pastries is nil");
             self.done = true;
         })
-        self.runWaitLoop(15);
+        self.runWaitLoop(30);
     }
     
     func testPrevious5PastriesFromDate() {
@@ -41,7 +40,7 @@ class PastryTestTests: XCTestCase {
             XCTAssert(pastries.count != 0, "pastry count should not be zero");
             self.done = true;
         })
-        self.runWaitLoop(15);
+        self.runWaitLoop(30);
     }
 
     func testNext5PastriesFromDate() {
@@ -50,7 +49,7 @@ class PastryTestTests: XCTestCase {
             XCTAssert(pastries.count != 0, "pastry count should not be zero");
             self.done = true;
         })
-        self.runWaitLoop(15);
+        self.runWaitLoop(30);
     }
     
     func testPastriesFromDateToDate() {
@@ -59,6 +58,7 @@ class PastryTestTests: XCTestCase {
             XCTAssert(pastries.count != 0, "pastry count is 0");
             self.done = true;
         })
+        self.runWaitLoop(30);
     }
 
     func testPastriesByBaker() {
@@ -67,7 +67,7 @@ class PastryTestTests: XCTestCase {
             XCTAssert(pastries.count != 0, "pastry count is 0");
             self.done = true;
         })
-        self.runWaitLoop(15);
+        self.runWaitLoop(30);
     }
 
     // Not for the faint of heart. I've never been patient enough to wait for a result set.

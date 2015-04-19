@@ -63,7 +63,7 @@ public class PastryKit : NSObject, NSURLSessionTaskDelegate
         let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler:{(data, response, error) in
             if (error == nil) {
                 var conversionError: NSError?
-                var ingredientsArray: NSArray = NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.AllowFragments, error:&conversionError) as NSArray
+                var ingredientsArray: NSArray = NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.AllowFragments, error:&conversionError) as! NSArray
                 if (conversionError == nil) {
                     var pasteries = Pastry.pastryArrayFromNSArray(ingredientsArray)
                     if (completionHandler != nil) {

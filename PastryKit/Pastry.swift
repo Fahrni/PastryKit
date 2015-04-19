@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Pastry : NSObject
+public class Pastry : Printable
 {
     var pubDateReal: Double!
     var pubDate: NSDate!
@@ -23,31 +23,29 @@ public class Pastry : NSObject
     var permaLink: String!
     var photo: String!
     
+    public var description: String { get { return "\(self.date)\n\(self.niceDate)\n\(self.title)\n\(self.twitterAnnouncement)\n\(self.realName)\n\(self.slug)\n\(self.permaLink)\n\(self.photo)" } }
+    
     init(ingredientsDictionary: NSDictionary) {
-        let dateString: String = ingredientsDictionary["pubdate"] as String
+        let dateString: String = ingredientsDictionary["pubdate"] as! String
         self.pubDateReal = (dateString as NSString).doubleValue
         self.pubDate = NSDate().dateByAddingTimeInterval(self.pubDateReal)
-        self.date = ingredientsDictionary.objectForKey("date") as String
-        self.niceDate = ingredientsDictionary.objectForKey("nicedate") as String
-        self.title = ingredientsDictionary.objectForKey("title") as String
-        self.thought = ingredientsDictionary.objectForKey("thought") as String
-        self.twitterAnnouncement = ingredientsDictionary.objectForKey("twitter_announcement") as String
-        self.role = ingredientsDictionary.objectForKey("role") as String
-        self.realName = ingredientsDictionary.objectForKey("realname") as String
-        self.slug = ingredientsDictionary.objectForKey("slug") as String
-        self.permaLink = ingredientsDictionary.objectForKey("permalink") as String
-        self.photo = ingredientsDictionary.objectForKey("photo") as String
-    }
-    
-    func description() -> String {
-        return "\(self.date)\n\(self.niceDate)\n\(self.title)\n\(self.twitterAnnouncement)\n\(self.realName)\n\(self.slug)\n\(self.permaLink)\n\(self.photo)"
+        self.date = ingredientsDictionary.objectForKey("date") as! String
+        self.niceDate = ingredientsDictionary.objectForKey("nicedate") as! String
+        self.title = ingredientsDictionary.objectForKey("title") as! String
+        self.thought = ingredientsDictionary.objectForKey("thought") as! String
+        self.twitterAnnouncement = ingredientsDictionary.objectForKey("twitter_announcement") as! String
+        self.role = ingredientsDictionary.objectForKey("role") as! String
+        self.realName = ingredientsDictionary.objectForKey("realname") as! String
+        self.slug = ingredientsDictionary.objectForKey("slug") as! String
+        self.permaLink = ingredientsDictionary.objectForKey("permalink") as! String
+        self.photo = ingredientsDictionary.objectForKey("photo") as! String
     }
     
     /// pastryArrayFromNSArray
     public class func pastryArrayFromNSArray(ingredientsArray: NSArray) -> [Pastry] {
         var pastries = [Pastry]()
         for ingredientsDictionary in ingredientsArray {
-            pastries.append(Pastry(ingredientsDictionary: ingredientsDictionary as NSDictionary))
+            pastries.append(Pastry(ingredientsDictionary: ingredientsDictionary as! NSDictionary))
         }
         return pastries;
     }

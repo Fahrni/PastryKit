@@ -9,11 +9,11 @@ A note about organization:
 Example of use, get all Pastries by Baker Mike Monteiro:
 ```swift
   private func showPastryBaker() {
-      var pastryKit = PastryKit();
-      pastryKit.thoughtsByBaker("mike-monteiro", completionHandler:{(pasteries, error) in
-          if (nil != error) { println(error) }
-          if (nil != pasteries) { println(pasteries) }
-      });
+      let pastryKit = PastryKit()
+      pastryKit.thoughtsByBaker("mike-monteiro", completionHandler:{ (pasteries, error) in
+          if nil != error { print(error) }
+          if nil != pasteries { print(pasteries) }
+      })
   }
 ```
 

@@ -60,33 +60,21 @@ public class PastryKit : NSObject, NSURLSessionTaskDelegate
         let request = NSURLRequest(URL: url!)
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-        let task : NSURLSessionDataTask = session.dataTaskWithRequest(request, completionHandler:{(data, response, error) in
-            if (error == nil) {
-                var conversionError: NSError?
-                var ingredientsArray: NSArray = NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.AllowFragments, error:&conversionError) as! NSArray
-                if (conversionError == nil) {
-                    var pasteries = Pastry.pastryArrayFromNSArray(ingredientsArray)
-                    if (completionHandler != nil) {
-                        completionHandler!(pasteries, nil)
-                    }
-                }
-                else {
-                    println(conversionError)
-                    if (completionHandler != nil) {
-                        completionHandler!(nil, conversionError)
-                    }
-                }
+
+        let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
+            if error != nil {
+                completionHandler!(nil, error)
+                return
             }
-            else {
-                println(error)
-                if (completionHandler != nil) {
-                    completionHandler!(nil, error)
-                }
+            
+            do {
+                let ingredientsArray: NSArray = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSArray
+                let pasteries = Pastry.pastryArrayFromNSArray(ingredientsArray)
+                completionHandler!(pasteries, nil)
+            } catch let error as NSError {
+                completionHandler!(nil, error)
             }
-        });
-        
+        })
         task.resume()
     }
-
-
 } // class PastryKit

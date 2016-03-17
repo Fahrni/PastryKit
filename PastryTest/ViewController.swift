@@ -25,55 +25,54 @@ class ViewController: UIViewController {
     }
     
     @IBAction func goButtonHandler(sender: AnyObject) {
-        var pk = PastryKit();
-        var today = NSDate().dateByAddingTimeInterval(NSDate().timeIntervalSince1970);
-        
+        let pk = PastryKit()
+
         switch (self.actionSegmentedControl.selectedSegmentIndex) {
         case 0:
-            pk.thoughtByDay(NSDate(), completionHandler:{(pasteries, error) in
-                if (nil != error) { println(error) }
-                if (nil != pasteries) { println(pasteries) }
+            pk.thoughtByDay(NSDate(), completionHandler:{ (pasteries, error) in
+                if nil != error { print(error) }
+                if nil != pasteries { print(pasteries) }
             });
         case 1:
-            pk.thoughtByDay(NSDate(), previous:5, completionHandler:{(pasteries, error) in
-                if (nil != error) { println(error) }
-                if (nil != pasteries) { println(pasteries) }
+            pk.thoughtByDay(NSDate(), previous:5, completionHandler:{ (pasteries, error) in
+                if nil != error { print(error) }
+                if nil != pasteries { print(pasteries) }
             });
 
         case 2:
-            pk.thoughtByDay(NSDate(), next:5, completionHandler:{(pasteries, error) in
-                if (nil != error) { println(error) }
-                if (nil != pasteries) { println(pasteries) }
+            pk.thoughtByDay(NSDate(), next:5, completionHandler:{ (pasteries, error) in
+                if nil != error { print(error) }
+                if nil != pasteries { print(pasteries) }
             });
 
         case 3:
-            pk.thoughtByDay(NSDate(), to:NSDate(), completionHandler:{(pasteries, error) in
-                if (nil != error) { println(error) }
-                if (nil != pasteries) { println(pasteries) }
+            pk.thoughtByDay(NSDate(), to:NSDate(), completionHandler:{ (pasteries, error) in
+                if nil != error { print(error) }
+                if nil != pasteries { print(pasteries) }
             });
 
         case 4:
             self.showPastryBaker();
         
         case 5:
-            pk.allThoughts({(pasteries, error) in
-                if (nil != error) { println(error) }
-                if (nil != pasteries) { println(pasteries) }
+            pk.allThoughts({ (pasteries, error) in
+                if nil != error { print(error) }
+                if nil != pasteries { print(pasteries) }
             });
             
         default:
-            pk.thoughtByDay(NSDate(), completionHandler:{(pasteries, error) in
-                if (nil != error) { println(error) }
-                if (nil != pasteries) { println(pasteries) }
+            pk.thoughtByDay(NSDate(), completionHandler:{ (pasteries, error) in
+                if nil != error { print(error) }
+                if nil != pasteries { print(pasteries) }
             });
         }
     }
     
     private func showPastryBaker() {
-        var pastryKit = PastryKit();
-        pastryKit.thoughtsByBaker("mike-monteiro", completionHandler:{(pasteries, error) in
-            if (nil != error) { println(error) }
-            if (nil != pasteries) { println(pasteries) }
+        let pastryKit = PastryKit();
+        pastryKit.thoughtsByBaker("mike-monteiro", completionHandler:{ (pasteries, error) in
+            if nil != error { print(error) }
+            if nil != pasteries { print(pasteries) }
         });
     }
 }

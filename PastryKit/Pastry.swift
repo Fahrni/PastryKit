@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Pastry : Printable
+public class Pastry : CustomStringConvertible
 {
     var pubDateReal: Double!
     var pubDate: NSDate!
